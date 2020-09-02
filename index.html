@@ -1,13 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Место</title>
+	<link rel="stylesheet" href="style/index.css">
 </head>
 
-<body>
+<body class="page">
+
+	<header class="header page__header">
+		<img src="images/logo.svg" alt="logo" class="logo">
+		<div class="header__line"></div>
+	</header>
+
+	<main class="content">
+
+		<section class="profile">
+			<img src="images/avatar.jpg" alt="avatar" class="avatar">
+			<div class="profile__naming">
+				<h1 class="profile__name">Жак-Ив Кусто</h1>
+				<img src="images/edit-pen.svg" alt="edit" class="edit">
+				<p class="profile__description">Исследователь океана</p>
+			</div>
+			<img src="images/plus.svg" alt="add-photo" class="adding">
+		</section>
+
+		<section class="cards">
+			<ul class="cards__list">
+				<li class="card">
+					<img src="images/card-kaindy.jpg" alt="photo" class="card__img">
+					<footer class="card__footer">
+						<h2 class="card__description">Озеро Каинды</h2>
+						<img src="images/heart.svg" alt="like" class="card__like">
+					</footer>
+				</li>
+
+				<li class="card">
+					<img src="images/card-bektau-ata.jpg" alt="photo" class="card__img">
+					<footer class="card__footer">
+						<h2 class="card__description">Бектау Ата</h2>
+						<img src="images/heart.svg" alt="like" class="card__like">
+					</footer>
+				</li>
+
+				<li class="card">
+					<img src="images/card-burhan-bulak.jpg" alt="photo" class="card__img">
+					<footer class="card__footer">
+						<h2 class="card__description">Бурхан Булак</h2>
+						<img src="images/heart.svg" alt="like" class="card__like">
+					</footer>
+				</li>
+
+				<li class="card">
+					<img src="images/card-alakol.jpg" alt="photo" class="card__img">
+					<footer class="card__footer">
+						<h2 class="card__description">Озеро Алаколь</h2>
+						<img src="images/heart.svg" alt="like" class="card__like">
+					</footer>
+				</li>
+
+				<li class="card">
+					<img src="images/card-talgar.jpg" alt="photo" class="card__img">
+					<footer class="card__footer">
+						<h2 class="card__description">Пик Талгар</h2>
+						<img src="images/heart.svg" alt="like" class="card__like">
+					</footer>
+				</li>
+
+				<li class="card">
+					<img src="images/card-assy.jpg" alt="photo" class="card__img">
+					<footer class="card__footer">
+						<h2 class="card__description">Плато Ассы</h2>
+						<img src="images/heart.svg" alt="like" class="card__like">
+					</footer>
+				</li>
+			</ul>
+		</section>
+
+	</main>
+
+	<footer class="footer">
+		<p class='copyright'>© 2020 Mesto Russia</p>
+	</footer>
 
 </body>
 

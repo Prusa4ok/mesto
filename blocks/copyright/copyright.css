@@ -1,0 +1,11 @@
+.copyright {
+	color: #545454;
+	margin: 0;
+	padding: 66px 0 60px 0;
+}
+
+@media screen and (max-width: 979px) {
+	.copyright {
+		padding: 48px 0 36px 0;
+	}
+}

@@ -1,0 +1,19 @@
+.adding {
+	border: 1px solid #fff;
+	padding: 14px 63px;
+	cursor: pointer;
+	transition: 1s;
+	justify-self: end;
+}
+
+.adding:hover {
+	opacity: .3;
+}
+
+@media screen and (max-width: 979px) {
+	.adding {
+		justify-self: center;
+		margin-top: 36px;
+		padding: 13px 129px;
+	}
+}

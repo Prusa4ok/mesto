@@ -1,0 +1,11 @@
+.card__footer {
+	color: #000;
+	background-color: #fff;
+	border-radius: 0 0 10px 10px;
+	min-height: 79px;
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 230px auto;
+	justify-content: center;
+	align-items: center;
+}

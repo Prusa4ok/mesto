@@ -1,0 +1,11 @@
+.profile__description {
+	margin: 0;
+	grid-column: 1/3;
+	max-width: max-content;
+}
+
+@media screen and (max-width: 979px) {
+	.profile__description {
+		justify-self: center;
+	}
+}
