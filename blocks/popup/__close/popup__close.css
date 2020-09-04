@@ -1,0 +1,17 @@
+.popup__close {
+	position: absolute;
+	cursor: pointer;
+	transform: rotate(45deg);
+	right: -40.7px;
+	top: -40.7px;
+	fill: #fff;
+	transition: 1s;
+}
+
+@media screen and (max-width: 520px) {
+	.popup__close {
+		top: 0;
+		right: 0;
+		fill: #000;
+	}
+}

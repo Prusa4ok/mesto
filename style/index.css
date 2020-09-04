@@ -16,6 +16,16 @@
 @import '../blocks/logo/logo.css';
 @import '../blocks/page/page.css';
 @import '../blocks/page/__header/page__header.css';
+@import '../blocks/page/__popup/page__popup.css';
+@import '../blocks/popup/popup.css';
+@import '../blocks/popup/__button/popup__button.css';
+@import '../blocks/popup/__container/popup__container.css';
+@import '../blocks/popup/__close/popup__close.css';
+@import '../blocks/popup/__input/popup__input.css';
+@import '../blocks/popup/__input/_name/popup__input_name.css';
+@import '../blocks/popup/__input/_description/popup__input_description.css';
+@import '../blocks/popup/__heading/popup__heading.css';
+@import '../blocks/popup/__js-open-close/popup__js-open-close.css';
 @import '../blocks/profile/profile.css';
 @import '../blocks/profile/__name/profile__name.css';
 @import '../blocks/profile/__naming/profile__naming.css';
