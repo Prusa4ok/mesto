@@ -1,1 +1,11 @@
-header {}
+.header {
+	border-bottom: 1px solid #545454;
+	padding-bottom: 40.6px;
+	transition: 1s;
+}
+
+@media screen and (max-width: 600px) {
+	.header {
+		padding-bottom: 31.6px;
+	}
+}

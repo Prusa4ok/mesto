@@ -1,6 +1,9 @@
 @import '../vendor/normalize.css';
 @import '../vendor/fonts/inter.css';
-@import '../blocks/adding/adding.css';
+@import '../blocks/button/button.css';
+@import '../blocks/button/_type/button_type_add.css';
+@import '../blocks/button/_type/button_type_edit.css';
+@import '../blocks/button/_type/button_type_like.css';
 @import '../blocks/avatar/avatar.css';
 @import '../blocks/card/card.css';
 @import '../blocks/card/__footer/card__footer.css';
@@ -10,10 +13,9 @@
 @import '../blocks/cards/cards.css';
 @import '../blocks/cards/cards.css';
 @import '../blocks/content/content.css';
-@import '../blocks/copyright/copyright.css';
-@import '../blocks/edit/edit.css';
-@import '../blocks/header/__line/header__line.css';
+@import '../blocks/footer/__copyright/footer__copyright.css';
 @import '../blocks/logo/logo.css';
+@import '../blocks/header/header.css';
 @import '../blocks/page/page.css';
 @import '../blocks/page/__header/page__header.css';
 @import '../blocks/page/__popup/page__popup.css';
@@ -22,10 +24,8 @@
 @import '../blocks/popup/__container/popup__container.css';
 @import '../blocks/popup/__close/popup__close.css';
 @import '../blocks/popup/__input/popup__input.css';
-@import '../blocks/popup/__input/_name/popup__input_name.css';
-@import '../blocks/popup/__input/_description/popup__input_description.css';
 @import '../blocks/popup/__heading/popup__heading.css';
-@import '../blocks/popup/__js-open-close/popup__js-open-close.css';
+@import '../blocks/popup/_js-open-close/popup_js-open-close.css';
 @import '../blocks/profile/profile.css';
 @import '../blocks/profile/__name/profile__name.css';
 @import '../blocks/profile/__naming/profile__naming.css';

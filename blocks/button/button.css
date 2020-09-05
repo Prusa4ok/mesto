@@ -1,0 +1,9 @@
+.button {
+	cursor: pointer;
+	align-self: center;
+	transition: 1s;
+}
+
+.button:hover {
+	opacity: .6;
+}

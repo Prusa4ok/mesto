@@ -1,0 +1,8 @@
+.button_type_like {
+	background: url(../../../images/heart.svg) no-repeat;
+	height: 19px;
+	width: 21px;
+	padding: 7px;
+	background-position: center;
+	border: none;
+}

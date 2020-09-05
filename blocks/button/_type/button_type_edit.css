@@ -1,0 +1,8 @@
+.button_type_edit {
+	background: url(../../../images/edit-pen.svg) no-repeat;
+	width: 24px;
+	height: 24px;
+	border: 1px solid #FFFFFF;
+	padding: 7px;
+	background-position: center;
+}

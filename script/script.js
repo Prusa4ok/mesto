@@ -1,38 +1,31 @@
-const page = document.querySelector('.page'),
-	edit = page.querySelector('.edit'),
-	popup = page.querySelector('.popup'),
-	popupButtonClose = page.querySelector('.popup__close'),
-	popupButtonSave = page.querySelector('.popup__button'),
-	profileName = page.querySelector('.profile__name'),
-	profileDescription = page.querySelector('.profile__description'),
-	popupName = page.querySelector('.popup__input_name'),
-	popupDescription = page.querySelector('.popup__input_description');
-;
+const page = document.querySelector('.page');
+const edit = page.querySelector('.button_type_edit');
+const popup = page.querySelector('.popup');
+const popupForm = page.querySelector('.popup__container');
+const popupButtonClose = page.querySelector('.popup__close');
+const popupButtonSave = page.querySelector('.popup__button');
+const profileName = page.querySelector('.profile__name');
+const profileDescription = page.querySelector('.profile__description');
+const popupName = page.querySelector('.popup_input_name');
+const popupDescription = page.querySelector('.popup_input_description');
 
-function popupClose() {
-	popup.classList.toggle('popup__js-open-close');
-	popupName.value = profileName.textContent;
-	popupDescription.value = profileDescription.textContent;
+function popupToggle() {
+	popup.classList.toggle('popup_js-open-close');
+	if (popup.classList.contains('popup_js-open-close')) {
+		popupName.value = profileName.textContent;
+		popupDescription.value = profileDescription.textContent;
+	}
 }
 
-function popupSave() {
-	profileName.innerHTML = popupName.value;
-	profileDescription.innerHTML = popupDescription.value;
-	popup.classList.toggle('popup__js-open-close');
+function popupSave(evt) {
+	evt.preventDefault();
+	profileName.textContent = popupName.value;
+	profileDescription.textContent = popupDescription.value;
+	popup.classList.toggle('popup_js-open-close');
 }
 
-edit.addEventListener('click', popupClose);
+edit.addEventListener('click', popupToggle);
 
-popupButtonClose.addEventListener('click', popupClose);
+popupButtonClose.addEventListener('click', popupToggle);
 
-popupButtonSave.addEventListener('click', popupSave);
-popupName.addEventListener('keypress', function (e) {
-	if (e.key === 'Enter') {
-		popupSave();
-	}
-});
-popupDescription.addEventListener('keypress', function (e) {
-	if (e.key === 'Enter') {
-		popupSave();
-	}
-});
+popupForm.addEventListener('submit', popupSave, false);
