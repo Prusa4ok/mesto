@@ -1,6 +1,8 @@
 .profile {
 	display: grid;
-	grid-template-columns: 168.75px auto max-content;
+	grid-template-columns: 144px auto max-content;
+	grid-template-rows: 127.5px;
+	grid-gap: 3.75px;
 	align-items: center;
 	padding-top: 37px;
 }

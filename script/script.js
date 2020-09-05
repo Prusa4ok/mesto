@@ -6,8 +6,8 @@ const popupButtonClose = page.querySelector('.popup__close');
 const popupButtonSave = page.querySelector('.popup__button');
 const profileName = page.querySelector('.profile__name');
 const profileDescription = page.querySelector('.profile__description');
-const popupName = page.querySelector('.popup_input_name');
-const popupDescription = page.querySelector('.popup_input_description');
+const popupName = page.querySelector('.popup__input_adding_name');
+const popupDescription = page.querySelector('.popup__input_adding_description');
 
 function popupToggle() {
 	popup.classList.toggle('popup_js-open-close');

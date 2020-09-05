@@ -1,6 +1,6 @@
 .popup__close {
 	background-image: url(../../../images/close-icon.svg);
-	background-color: #000;
+	background-color: rgba(0, 0, 0, 0);
 	position: absolute;
 	cursor: pointer;
 	width: 40.7px;
@@ -22,7 +22,6 @@
 		right: 10px;
 		width: 32px;
 		height: 32px;
-		background-color: #fff;
-		background-image: url(../../../images/close-popup-little.png);
+		background-image: url(../../../images/close-popup-little.svg);
 	}
 }
