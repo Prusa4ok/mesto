@@ -28,6 +28,7 @@
 
 		<section class="cards">
 			<ul class="cards__list">
+
 				<li class="card">
 					<img src="images/card-kaindy.jpg" alt="фото" class="card__img">
 					<div class="card__footer">
@@ -93,6 +94,16 @@
 			<button aria-label="закрыть" type="button" class="popup__close"></button>
 		</form>
 	</div>
+
+	<template id="tempCard">
+		<li class="card">
+			<img alt="фото" class="card__img">
+			<div class="card__footer">
+				<h2 class="card__description"></h2>
+				<button aria-label="нравится" type="button" class="button button_type_like"></button>
+			</div>
+		</li>
+	</template>
 
 	<script src="script/script.js"></script>
 </body>
