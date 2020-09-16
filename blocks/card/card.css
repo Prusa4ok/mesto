@@ -1,3 +1,5 @@
 .card {
 	display: grid;
+	/* для разной высоты изображений */
+	align-self: end;
 }

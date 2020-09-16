@@ -25,7 +25,8 @@
 @import '../blocks/popup/__close/popup__close.css';
 @import '../blocks/popup/__input/popup__input.css';
 @import '../blocks/popup/__heading/popup__heading.css';
-@import '../blocks/popup/_js-open-close/popup_js-open-close.css';
+@import '../blocks/popup/_type/popup_type_addCard-close.css';
+@import '../blocks/popup/_type/popup_type_editName-close.css';
 @import '../blocks/profile/profile.css';
 @import '../blocks/profile/__name/profile__name.css';
 @import '../blocks/profile/__naming/profile__naming.css';
