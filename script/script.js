@@ -48,7 +48,7 @@ const addCard = (link, name) => {
 	card.querySelector('.card__img').src = link;
 	card.querySelector('.card__description').innerText = name;
 
-	cardsList.append(card);
+	cardsList.prepend(card);
 }
 
 function popupEditNameToggle() {
