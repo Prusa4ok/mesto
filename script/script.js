@@ -14,6 +14,8 @@ const popupCardName = page.querySelector('.popup__input_adding_cardName');
 const popupCardLink = page.querySelector('.popup__input_adding_cardLink');
 const cardsList = page.querySelector('.cards__list');
 const tempCard = page.querySelector('#tempCard').content;
+let buttonsLike = [];
+let countId = 0;
 
 const initialCards = [
 	{
@@ -41,14 +43,19 @@ const initialCards = [
 		link: 'images/card-baykal.jpg'
 	}
 ];
+const getButtonLike = () => {
+	buttonsLike = page.querySelectorAll('.button__like');
+}
 
 const addCard = (link, name) => {
 	const card = tempCard.cloneNode(true);
 
 	card.querySelector('.card__img').src = link;
 	card.querySelector('.card__description').innerText = name;
+	countId++;
 
 	cardsList.prepend(card);
+	getButtonLike();
 }
 
 function popupEditNameToggle() {
@@ -91,7 +98,15 @@ initialCards.forEach(card => addCard(card.link, card.name));
 edit.addEventListener('click', popupEditNameToggle);
 popupButtonAddCard.addEventListener('click', popupAddCardToggle);
 
+// закрывание попапа
 popupButtonClose.forEach(item => item.addEventListener('click', popupClose));
 
 popupFormEdit.addEventListener('submit', popupEditNameSave, false);
 popupFormAddCard.addEventListener('submit', popupAddCardCreate, false);
+
+// лайк карточки
+const handleLike = el => {
+	el.target.classList.toggle('button__like_type_active');
+};
+
+buttonsLike.forEach(item => item.addEventListener('click', handleLike));

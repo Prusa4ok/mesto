@@ -1,8 +1,12 @@
-.button_type_like {
+.button__like {
 	background: url(../../../images/heart.svg) no-repeat;
 	height: 19px;
 	width: 21px;
 	padding: 7px;
 	background-position: center;
 	border: none;
+}
+
+.button__like, .button__like:active, .button__like:focus {
+	outline: none;
 }
