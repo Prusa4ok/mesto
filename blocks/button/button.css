@@ -7,3 +7,7 @@
 .button:hover {
 	opacity: .6;
 }
+
+.button, .button:active, .button:focus {
+	outline: none;
+}

@@ -1,0 +1,10 @@
+.button__delete {
+	background: url(../../../images/garbage.svg) no-repeat;
+	height: 18px;
+	width: 19.3px;
+	background-position: center;
+	border: none;
+	position: absolute;
+	top: 18px;
+	right: 15px;
+}

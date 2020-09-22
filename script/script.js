@@ -15,8 +15,7 @@ const popupCardLink = page.querySelector('.popup__input_adding_cardLink');
 const cardsList = page.querySelector('.cards__list');
 const tempCard = page.querySelector('#tempCard').content;
 let buttonsLike = [];
-let countId = 0;
-
+let buttonsDelete = [];
 const initialCards = [
 	{
 		name: 'Архыз',
@@ -43,8 +42,9 @@ const initialCards = [
 		link: 'images/card-baykal.jpg'
 	}
 ];
-const getButtonLike = () => {
+const getButtons = () => {
 	buttonsLike = page.querySelectorAll('.button__like');
+	buttonsDelete = page.querySelectorAll('.button__delete');
 }
 
 const addCard = (link, name) => {
@@ -52,10 +52,9 @@ const addCard = (link, name) => {
 
 	card.querySelector('.card__img').src = link;
 	card.querySelector('.card__description').innerText = name;
-	countId++;
 
 	cardsList.prepend(card);
-	getButtonLike();
+	getButtons();
 }
 
 function popupEditNameToggle() {
@@ -110,3 +109,11 @@ const handleLike = el => {
 };
 
 buttonsLike.forEach(item => item.addEventListener('click', handleLike));
+
+// удаление карточки
+const handleDelete = el => {
+	el = el.target.closest('.card');
+	el.remove();
+};
+
+buttonsDelete.forEach(item => item.addEventListener('click', handleDelete));

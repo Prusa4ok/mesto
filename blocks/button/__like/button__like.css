@@ -6,7 +6,3 @@
 	background-position: center;
 	border: none;
 }
-
-.button__like, .button__like:active, .button__like:focus {
-	outline: none;
-}

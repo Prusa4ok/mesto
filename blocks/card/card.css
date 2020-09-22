@@ -1,5 +1,6 @@
 .card {
 	display: grid;
+	position: relative;
 	/* для разной высоты изображений */
 	align-self: end;
 }
