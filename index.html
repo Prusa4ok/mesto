@@ -37,7 +37,7 @@
 		<p class="footer__copyright">© 2020 Mesto Russia</p>
 	</footer>
 
-	<div class="popup page__popup popup_type_editName-close">
+	<div class="popup page__popup popup__editName popup_type_closed">
 		<form class="popup__container popup__container_type_edit">
 			<h2 class="popup__heading">Редактировать профиль</h2>
 			<input type="text" class="popup__input popup__input_adding_name" value="Жак-Ив Кусто" required>
@@ -47,7 +47,7 @@
 		</form>
 	</div>
 
-	<div class="popup page__popup popup_type_addCard-close">
+	<div class="popup page__popup popup_type_addCard popup_type_closed">
 		<form class="popup__container popup__container_type_addCard">
 			<h2 class="popup__heading"></h2>
 			<input type="text" class="popup__input popup__input_adding_cardName" placeholder="Название" required>
@@ -57,11 +57,11 @@
 		</form>
 	</div>
 
-	<div class="popup page__popup ">
-		<div class="popup__container popup__container_type_imgWatch">
-			<img src="images/card-test.jpg" class="popup__img" alt="фото из галереи"></img>
+	<div class="popup page__popup popup_type_gallery popup_type_closed">
+		<div class="popup__container popup__container_type_gallery">
+			<img src="" class="popup__img" alt="фото из галереи"></img>
 			<button aria-label="закрыть" type="button" class="popup__close"></button>
-			<p class="popup__desc">Алтай</p>
+			<p class="popup__desc"></p>
 		</div>
 	</div>
 

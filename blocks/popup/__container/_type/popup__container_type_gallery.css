@@ -1,6 +1,7 @@
-.popup__container_type_imgWatch {
+.popup__container_type_gallery {
 	width: initial;
 	height: initial;
 	padding: 0;
 	background-color: rgba(0, 0, 0, 0);
+	margin-top: 50px;
 }

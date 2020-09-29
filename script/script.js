@@ -1,7 +1,8 @@
 const page = document.querySelector('.page');
 const edit = page.querySelector('.button_type_edit');
-const popupEditName = page.querySelector('.popup_type_editName-close');
-const popupAddCard = page.querySelector('.popup_type_addCard-close');
+const popupAddCard = page.querySelector('.popup_type_addCard');
+const popupEditName = page.querySelector('.popup__editName');
+const popupGallery = page.querySelector('.popup_type_gallery');
 const popupFormEdit = page.querySelector('.popup__container_type_edit');
 const popupFormAddCard = page.querySelector('.popup__container_type_addCard');
 const popupButtonAddCard = page.querySelector('.button_type_add');
@@ -16,6 +17,7 @@ const cardsList = page.querySelector('.cards__list');
 const tempCard = page.querySelector('#tempCard').content;
 let buttonsLike = [];
 let buttonsDelete = [];
+let cardsImages = [];
 const initialCards = [
 	{
 		name: 'Архыз',
@@ -42,9 +44,10 @@ const initialCards = [
 		link: 'images/card-baykal.jpg'
 	}
 ];
-const getButtons = () => {
+const getButtonsPopups = () => {
 	buttonsLike = page.querySelectorAll('.button__like');
 	buttonsDelete = page.querySelectorAll('.button__delete');
+	cardsImages = page.querySelectorAll('.card__img');
 }
 
 const addCard = (link, name) => {
@@ -54,12 +57,12 @@ const addCard = (link, name) => {
 	card.querySelector('.card__description').innerText = name;
 
 	cardsList.prepend(card);
-	getButtons();
+	getButtonsPopups();
 }
 
 function popupEditNameToggle() {
-	popupEditName.classList.toggle('popup_type_editName-close');
-	if (popupEditName.classList.contains('popup_type_editName-close')) {
+	popupEditName.classList.toggle('popup_type_closed');
+	if (popupEditName.classList.contains('popup_type_closed')) {
 		popupName.value = profileName.textContent;
 		popupDescription.value = profileDescription.textContent;
 	}
@@ -77,19 +80,11 @@ function popupEditNameSave(evt) {
 	evt.preventDefault();
 	profileName.textContent = popupName.value;
 	profileDescription.textContent = popupDescription.value;
-	popupEditName.classList.toggle('popup_type_editName-close');
+	popupEditName.classList.toggle('popup_type_closed');
 }
 
 const popupAddCardToggle = () => {
-	popupAddCard.classList.toggle('popup_type_addCard-close');
-}
-
-const popupClose = () => {
-	if (popupAddCard.classList.contains('popup_type_addCard-close')) {
-		popupEditName.classList.toggle('popup_type_editName-close');
-	} else if (popupEditName.classList.contains('popup_type_editName-close')) {
-		popupAddCard.classList.toggle('popup_type_addCard-close');
-	}
+	popupAddCard.classList.toggle('popup_type_closed');
 }
 
 initialCards.forEach(card => addCard(card.link, card.name));
@@ -98,6 +93,10 @@ edit.addEventListener('click', popupEditNameToggle);
 popupButtonAddCard.addEventListener('click', popupAddCardToggle);
 
 // закрывание попапа
+const popupClose = el => {
+	el.target.closest('.popup').classList.toggle('popup_type_closed');
+}
+
 popupButtonClose.forEach(item => item.addEventListener('click', popupClose));
 
 popupFormEdit.addEventListener('submit', popupEditNameSave, false);
@@ -117,3 +116,18 @@ const handleDelete = el => {
 };
 
 buttonsDelete.forEach(item => item.addEventListener('click', handleDelete));
+
+//разворачиваем картинку для просмотра
+const openImg = (el, img) => {
+	img = el.target.src;
+	let currentCard = el.target.closest('.card');
+	let cardDescription = currentCard.querySelector('.card__description').innerText;
+	console.log(cardDescription);
+	popupImg = popupGallery.querySelector('.popup__img');
+	popupDesc = popupGallery.querySelector('.popup__desc');
+	popupGallery.classList.toggle('popup_type_closed');
+	popupImg.src = img;
+	popupDesc.innerText = cardDescription;
+}
+
+cardsImages.forEach(item => item.addEventListener('click', openImg));
