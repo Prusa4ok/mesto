@@ -1,5 +1,6 @@
 const page = document.querySelector('.page');
 const edit = page.querySelector('.button_type_edit');
+const popups = page.querySelectorAll('.popup');
 const popupAddCard = page.querySelector('.popup_type_addCard');
 const popupEditName = page.querySelector('.popup__editName');
 const popupGallery = page.querySelector('.popup_type_gallery');
@@ -7,12 +8,12 @@ const popupFormEdit = page.querySelector('.popup__container_type_edit');
 const popupFormAddCard = page.querySelector('.popup__container_type_addCard');
 const popupButtonAddCard = page.querySelector('.button_type_add');
 const popupButtonClose = page.querySelectorAll('.popup__close');
-const profileName = page.querySelector('.profile__name');
-const profileDescription = page.querySelector('.profile__description');
 const popupName = page.querySelector('.popup__input_adding_name');
 const popupDescription = page.querySelector('.popup__input_adding_description');
 const popupCardName = page.querySelector('.popup__input_adding_cardName');
 const popupCardLink = page.querySelector('.popup__input_adding_cardLink');
+const profileDescription = page.querySelector('.profile__description');
+const profileName = page.querySelector('.profile__name');
 const cardsList = page.querySelector('.cards__list');
 const tempCard = page.querySelector('#tempCard').content;
 let buttonsLike = [];
@@ -44,12 +45,26 @@ const initialCards = [
 		link: 'images/card-baykal.jpg'
 	}
 ];
+
+//берём все лайки, корзины и изображения
 const getButtonsPopups = () => {
 	buttonsLike = page.querySelectorAll('.button__like');
 	buttonsDelete = page.querySelectorAll('.button__delete');
 	cardsImages = page.querySelectorAll('.card__img');
 }
 
+// удаление карточки
+const handleDelete = el => {
+	el = el.target.closest('.card');
+	el.remove();
+};
+
+// лайк карточки
+const handleLike = el => {
+	el.target.classList.toggle('button__like_type_active');
+};
+
+// добавляем карточку, обновляем список кнопок и задаём нажатиям функции
 const addCard = (link, name) => {
 	const card = tempCard.cloneNode(true);
 
@@ -58,6 +73,9 @@ const addCard = (link, name) => {
 
 	cardsList.prepend(card);
 	getButtonsPopups();
+
+	buttonsDelete.forEach(item => item.addEventListener('click', handleDelete));
+	buttonsLike.forEach(item => item.addEventListener('click', handleLike));
 }
 
 function popupEditNameToggle() {
@@ -93,29 +111,18 @@ edit.addEventListener('click', popupEditNameToggle);
 popupButtonAddCard.addEventListener('click', popupAddCardToggle);
 
 // закрывание попапа
-const popupClose = el => {
-	el.target.closest('.popup').classList.toggle('popup_type_closed');
+const popupClose = () => {
+	popups.forEach(item => {
+		if (item.classList.contains('popup_type_closed') != true) {
+			item.classList.toggle('popup_type_closed');
+		}
+	})
 }
 
 popupButtonClose.forEach(item => item.addEventListener('click', popupClose));
 
 popupFormEdit.addEventListener('submit', popupEditNameSave, false);
 popupFormAddCard.addEventListener('submit', popupAddCardCreate, false);
-
-// лайк карточки
-const handleLike = el => {
-	el.target.classList.toggle('button__like_type_active');
-};
-
-buttonsLike.forEach(item => item.addEventListener('click', handleLike));
-
-// удаление карточки
-const handleDelete = el => {
-	el = el.target.closest('.card');
-	el.remove();
-};
-
-buttonsDelete.forEach(item => item.addEventListener('click', handleDelete));
 
 //разворачиваем картинку для просмотра
 const openImg = (el, img) => {
