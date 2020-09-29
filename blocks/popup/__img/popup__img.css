@@ -1,6 +1,6 @@
 .popup__img {
 	min-width: 320px;
-	width: 80vw;
+	width: 75vw;
 	max-width: max-content;
-	max-height: 80vh;
+	max-height: 75vh;
 }
