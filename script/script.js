@@ -64,6 +64,20 @@ const handleLike = el => {
 	el.target.classList.toggle('button__like_type_active');
 };
 
+//разворачиваем картинку для просмотра
+const openImg = (el, img) => {
+	img = el.target.src;
+	let currentCard = el.target.closest('.card');
+	let cardDescription = currentCard.querySelector('.card__description').innerText;
+	console.log(cardDescription);
+	popupImg = popupGallery.querySelector('.popup__img');
+	popupDesc = popupGallery.querySelector('.popup__desc');
+	popupGallery.classList.toggle('popup_type_closed');
+	popupImg.src = img;
+	popupDesc.innerText = cardDescription;
+}
+
+
 // добавляем карточку, обновляем список кнопок и задаём нажатиям функции
 const addCard = (link, name) => {
 	const card = tempCard.cloneNode(true);
@@ -74,6 +88,7 @@ const addCard = (link, name) => {
 	cardsList.prepend(card);
 	getButtonsPopups();
 
+	cardsImages.forEach(item => item.addEventListener('click', openImg));
 	buttonsDelete.forEach(item => item.addEventListener('click', handleDelete));
 	buttonsLike.forEach(item => item.addEventListener('click', handleLike));
 }
@@ -123,18 +138,3 @@ popupButtonClose.forEach(item => item.addEventListener('click', popupClose));
 
 popupFormEdit.addEventListener('submit', popupEditNameSave, false);
 popupFormAddCard.addEventListener('submit', popupAddCardCreate, false);
-
-//разворачиваем картинку для просмотра
-const openImg = (el, img) => {
-	img = el.target.src;
-	let currentCard = el.target.closest('.card');
-	let cardDescription = currentCard.querySelector('.card__description').innerText;
-	console.log(cardDescription);
-	popupImg = popupGallery.querySelector('.popup__img');
-	popupDesc = popupGallery.querySelector('.popup__desc');
-	popupGallery.classList.toggle('popup_type_closed');
-	popupImg.src = img;
-	popupDesc.innerText = cardDescription;
-}
-
-cardsImages.forEach(item => item.addEventListener('click', openImg));
