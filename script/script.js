@@ -69,10 +69,9 @@ const openImg = (el, img) => {
 	img = el.target.src;
 	let currentCard = el.target.closest('.card');
 	let cardDescription = currentCard.querySelector('.card__description').innerText;
-	console.log(cardDescription);
 	popupImg = popupGallery.querySelector('.popup__img');
 	popupDesc = popupGallery.querySelector('.popup__desc');
-	popupGallery.classList.toggle('popup_type_closed');
+	popupGallery.classList.toggle('popup_type_open');
 	popupImg.src = img;
 	popupDesc.innerText = cardDescription;
 }
@@ -94,8 +93,8 @@ const addCard = (link, name) => {
 }
 
 function popupEditNameToggle() {
-	popupEditName.classList.toggle('popup_type_closed');
-	if (popupEditName.classList.contains('popup_type_closed')) {
+	popupEditName.classList.toggle('popup_type_open');
+	if (popupEditName.classList.contains('popup_type_open')) {
 		popupName.value = profileName.textContent;
 		popupDescription.value = profileDescription.textContent;
 	}
@@ -113,11 +112,11 @@ function popupEditNameSave(evt) {
 	evt.preventDefault();
 	profileName.textContent = popupName.value;
 	profileDescription.textContent = popupDescription.value;
-	popupEditName.classList.toggle('popup_type_closed');
+	popupEditName.classList.toggle('popup_type_open');
 }
 
 const popupAddCardToggle = () => {
-	popupAddCard.classList.toggle('popup_type_closed');
+	popupAddCard.classList.toggle('popup_type_open');
 }
 
 initialCards.forEach(card => addCard(card.link, card.name));
@@ -128,13 +127,12 @@ popupButtonAddCard.addEventListener('click', popupAddCardToggle);
 // закрывание попапа
 const popupClose = () => {
 	popups.forEach(item => {
-		if (item.classList.contains('popup_type_closed') != true) {
-			item.classList.toggle('popup_type_closed');
+		if (item.classList.contains('popup_type_open') != false) {
+			item.classList.toggle('popup_type_open');
 		}
 	})
 }
 
 popupButtonClose.forEach(item => item.addEventListener('click', popupClose));
-
 popupFormEdit.addEventListener('submit', popupEditNameSave, false);
 popupFormAddCard.addEventListener('submit', popupAddCardCreate, false);
