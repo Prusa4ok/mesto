@@ -1,6 +1,5 @@
 const page = document.querySelector('.page');
 const edit = page.querySelector('.button_type_edit');
-const popups = page.querySelectorAll('.popup');
 const popupAddCard = page.querySelector('.popup_type_addCard');
 const popupEditName = page.querySelector('.popup__editName');
 const popupGallery = page.querySelector('.popup_type_gallery');
@@ -54,8 +53,8 @@ const getButtonsPopups = () => {
 }
 
 // удаление карточки
-const handleDelete = el => {
-	el = el.target.closest('.card').remove();
+const handleDelete = event => {
+	event.target.closest('.card').remove();
 };
 
 // лайк карточки
@@ -65,10 +64,10 @@ const handleLike = el => {
 
 //разворачиваем картинку для просмотра
 let determinGalleryItems = (el) => {
-	let currentCard = el.target.closest('.card');
-	let cardDescription = currentCard.querySelector('.card__description').textContent;
-	let popupImg = popupGallery.querySelector('.popup__img');
-	let popupDesc = popupGallery.querySelector('.popup__desc');
+	const currentCard = el.target.closest('.card');
+	const cardDescription = currentCard.querySelector('.card__description').textContent;
+	const popupImg = popupGallery.querySelector('.popup__img');
+	const popupDesc = popupGallery.querySelector('.popup__desc');
 	popupImg.src = el.target.src;
 	popupImg.alt = cardDescription;
 	popupDesc.textContent = cardDescription;
@@ -83,9 +82,10 @@ const openImg = () => {
 // добавляем карточку, обновляем список кнопок и задаём нажатиям функции
 const getCardElement = (link, name) => {
 	const card = tempCard.cloneNode(true);
+	const cardImg = card.querySelector('.card__img');
 
-	card.querySelector('.card__img').src = link;
-	card.querySelector('.card__img').alt = name;
+	cardImg.src = link;
+	cardImg.alt = name;
 	card.querySelector('.card__description').textContent = name;
 
 	return card;
@@ -95,7 +95,7 @@ const addCard = (link, name) => {
 	cardsList.prepend(getCardElement(link, name));
 
 	getButtonsPopups();
-
+	// если я переношу обработчики в getCardElement, то в добавленных картах кнопки остаются без событий
 	cardsImages.forEach(item => item.addEventListener('click', determinGalleryItems));
 	buttonsDelete.forEach(item => item.addEventListener('click', handleDelete));
 	buttonsLike.forEach(item => item.addEventListener('click', handleLike));
@@ -117,7 +117,7 @@ const createPopupAddCard = (evt) => {
 	togglePopupOpen(popupAddCard);
 }
 
-function SavePopupEditName(evt) {
+function savePopupEditName(evt) {
 	evt.preventDefault();
 	profileName.textContent = popupName.value;
 	profileDescription.textContent = popupDescription.value;
@@ -139,5 +139,5 @@ const closePopup = (el) => {
 }
 
 popupButtonsClose.forEach(item => item.addEventListener('click', closePopup));
-popupFormEdit.addEventListener('submit', SavePopupEditName);
+popupFormEdit.addEventListener('submit', savePopupEditName);
 popupFormAddCard.addEventListener('submit', createPopupAddCard);
