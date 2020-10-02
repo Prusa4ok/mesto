@@ -15,9 +15,7 @@ const profileDescription = page.querySelector('.profile__description');
 const profileName = page.querySelector('.profile__name');
 const cardsList = page.querySelector('.cards__list');
 const tempCard = page.querySelector('#tempCard').content;
-let buttonsLike = [];
-let buttonsDelete = [];
-let cardsImages = [];
+
 const initialCards = [
 	{
 		name: 'Архыз',
@@ -45,24 +43,15 @@ const initialCards = [
 	}
 ];
 
-//берём все лайки, корзины и изображения
-const getButtonsPopups = () => {
-	buttonsLike = page.querySelectorAll('.button__like');
-	buttonsDelete = page.querySelectorAll('.button__delete');
-	cardsImages = page.querySelectorAll('.card__img');
-}
-
-// удаление карточки
 const handleDelete = event => {
 	event.target.closest('.card').remove();
 };
 
-// лайк карточки
 const handleLike = el => {
 	el.target.classList.toggle('button__like_type_active');
 };
 
-//разворачиваем картинку для просмотра
+// разворачиваем картинку для просмотра
 let determinGalleryItems = (el) => {
 	const currentCard = el.target.closest('.card');
 	const cardDescription = currentCard.querySelector('.card__description').textContent;
@@ -83,22 +72,22 @@ const openImg = () => {
 const getCardElement = (link, name) => {
 	const card = tempCard.cloneNode(true);
 	const cardImg = card.querySelector('.card__img');
+	const cardButtonDelete = card.querySelector('.button__delete');
+	const cardButtonLike = card.querySelector('.button__like');
 
 	cardImg.src = link;
 	cardImg.alt = name;
 	card.querySelector('.card__description').textContent = name;
+
+	cardImg.addEventListener('click', determinGalleryItems);
+	cardButtonDelete.addEventListener('click', handleDelete);
+	cardButtonLike.addEventListener('click', handleLike);
 
 	return card;
 }
 
 const addCard = (link, name) => {
 	cardsList.prepend(getCardElement(link, name));
-
-	getButtonsPopups();
-	// если я переношу обработчики в getCardElement, то в добавленных картах кнопки остаются без событий
-	cardsImages.forEach(item => item.addEventListener('click', determinGalleryItems));
-	buttonsDelete.forEach(item => item.addEventListener('click', handleDelete));
-	buttonsLike.forEach(item => item.addEventListener('click', handleLike));
 }
 
 function togglePopupEditName() {
