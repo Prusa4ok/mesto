@@ -1,19 +1,19 @@
 .popup__input {
 	font-size: 14px;
-	min-width: 358px;
+	min-width: 348px;
 	border: none;
 	color: #000;
 	border-bottom: 1px solid rgba(0, 0, 0, .2);
 	margin-top: 54px;
-	padding-bottom: 13.26px;
+	padding: 13px 5px;
 }
 
 .popup__input:focus {
-	outline: none;
+	outline-color: #85C1E9;
 }
 
 .popup__input:nth-last-of-type(1) {
-	margin-top: 29.74px;
+	margin-top: 13px;
 }
 
 @media screen and (max-width: 430px) {

@@ -23,13 +23,17 @@
 @import '../blocks/page/__popup/page__popup.css';
 @import '../blocks/popup/popup.css';
 @import '../blocks/popup/__button/popup__button.css';
+@import '../blocks/popup/__button/_type/popup__button_type_disabled.css';
 @import '../blocks/popup/__container/popup__container.css';
 @import '../blocks/popup/__container/_type/popup__container_type_gallery.css';
 @import '../blocks/popup/__close/popup__close.css';
 @import '../blocks/popup/__desc/popup__desc.css';
 @import '../blocks/popup/__img/popup__img.css';
 @import '../blocks/popup/__input/popup__input.css';
+@import '../blocks/popup/__input/_type/popup__input_type_error.css';
 @import '../blocks/popup/__heading/popup__heading.css';
+@import '../blocks/popup/__msgError/popup__msgError.css';
+@import '../blocks/popup/__msgError/_type/popup__msgError_type_close.css';
 @import '../blocks/popup/_type/popup_type_open.css';
 @import '../blocks/profile/profile.css';
 @import '../blocks/profile/__name/profile__name.css';
