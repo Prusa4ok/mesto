@@ -12,4 +12,6 @@
 	opacity: 0;
 	pointer-events: none;
 	transition: .3s;
+	cursor: pointer;
+	z-index: 1;
 }

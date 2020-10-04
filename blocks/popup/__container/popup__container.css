@@ -12,6 +12,8 @@
 	justify-content: flex-start;
 	align-items: center;
 	padding-bottom: 36.51px;
+	cursor: auto;
+	z-index: 2;
 }
 
 @media screen and (max-width: 430px) {

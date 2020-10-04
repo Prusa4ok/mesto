@@ -1,5 +1,6 @@
 const page = document.querySelector('.page');
 const edit = page.querySelector('.button_type_edit');
+const popups = page.querySelectorAll('.popup');
 const popupAddCard = page.querySelector('.popup_type_addCard');
 const popupEditName = page.querySelector('.popup__editName');
 const popupInputs = page.querySelectorAll('.popup__input');
@@ -138,16 +139,34 @@ edit.addEventListener('click', togglePopupEditName);
 popupButtonAddCard.addEventListener('click', popupAddCardToggle);
 
 // закрывание попапа
-const closePopup = el => {
-	el.target.closest('.popup').classList.remove('popup_type_open');
+const closePopup = evt => {
+	evt.target.closest('.popup').classList.remove('popup_type_open');
 }
 
+const closePopupOverlay = evt => {
+	if (evt.target.classList.contains('page__popup')) {
+		closePopup(evt);
+	}
+}
+
+const closePopupEsc = evt => {
+	if (evt.key === 'Escape') {
+		popups.forEach(item => {
+			if (item.classList.contains('popup_type_open')) {
+				item.classList.remove('popup_type_open');
+			};
+		});
+	}
+}
+
+page.addEventListener('keydown', closePopupEsc);
+popups.forEach(item => item.addEventListener('click', closePopupOverlay));
 popupButtonsClose.forEach(item => item.addEventListener('click', closePopup));
 popupFormEdit.addEventListener('submit', savePopupEditName);
 popupFormAddCard.addEventListener('submit', createPopupAddCard);
 
 // валидация формы addCard
-const msgError = (el, value) => {
+const msgError = (evt, value) => {
 	if (value === 'link-empty') {
 		return 'Вы пропустили это поле.'
 	} else if (value === 'link-error') {
@@ -155,14 +174,14 @@ const msgError = (el, value) => {
 	} else if (value === undefined) {
 		return 'Вы пропустили это поле.'
 	} else if (value === 'less') {
-		return `Минимальное количество символов: ${inputLength[el.target.id][0]}. Длина текста сейчас: 1 символ.`
+		return `Минимальное количество символов: ${inputLength[evt.target.id][0]}. Длина текста сейчас: 1 символ.`
 	} else if (value === 'more') {
-		return `Максимальное количество символов: ${inputLength[el.target.id][1]}. Длина текста сейчас: ${el.target.value.length} символов.`
+		return `Максимальное количество символов: ${inputLength[evt.target.id][1]}. Длина текста сейчас: ${el.target.value.length} символов.`
 	}
 }
 
-const checkCardInputs = el => {
-	const inputs = el.target.closest('.popup__container').querySelectorAll('.popup__input');
+const checkCardInputs = evt => {
+	const inputs = evt.target.closest('.popup__container').querySelectorAll('.popup__input');
 	const checking = () => {
 		return !inputs[0].classList.contains('popup__input_type_error') && !inputs[1].classList.contains('popup__input_type_error');
 	}
@@ -171,8 +190,8 @@ const checkCardInputs = el => {
 	}
 }
 
-const enabledPopupButton = el => {
-	const currentContainer = el.target.closest('.popup__container');
+const enabledPopupButton = evt => {
+	const currentContainer = evt.target.closest('.popup__container');
 	const currentButton = currentContainer.querySelector('.popup__button');
 	currentContainer.querySelector('.popup__button').classList.remove('popup__button_type_disabled');
 	if (currentButton.disabled === true) {
@@ -180,8 +199,8 @@ const enabledPopupButton = el => {
 	}
 }
 
-const disabledPopupButton = el => {
-	const currentContainer = el.target.closest('.popup__container');
+const disabledPopupButton = evt => {
+	const currentContainer = evt.target.closest('.popup__container');
 	const currentButton = currentContainer.querySelector('.popup__button');
 	currentContainer.querySelector('.popup__button').classList.add('popup__button_type_disabled');
 	if (currentButton.disabled === false) {
@@ -189,28 +208,28 @@ const disabledPopupButton = el => {
 	}
 }
 
-const addInputError = (el, error) => {
-	if (el.target.classList.contains('popup__input')) {
-		const currentInputId = el.target.id;
+const addInputError = (evt, error) => {
+	if (evt.target.classList.contains('popup__input')) {
+		const currentInputId = evt.target.id;
 		const msgErrorEl = page.querySelector(`#${currentInputId}-error`);
-		el.target.classList.add('popup__input_type_error');
+		evt.target.classList.add('popup__input_type_error');
 		msgErrorEl.classList.remove('popup__msgError_type_close');
 		msgErrorEl.textContent = error;
 	}
-	if (!checkCardInputs(el)) {
-		disabledPopupButton(el);
+	if (!checkCardInputs(evt)) {
+		disabledPopupButton(evt);
 	}
 }
 
-const deleteInputError = (el) => {
-	if (el.target.classList.contains('popup__input')) {
-		const currentInputId = el.target.id;
+const deleteInputError = (evt) => {
+	if (evt.target.classList.contains('popup__input')) {
+		const currentInputId = evt.target.id;
 		const msgErrorEl = page.querySelector(`#${currentInputId}-error`);
-		el.target.classList.remove('popup__input_type_error');
+		evt.target.classList.remove('popup__input_type_error');
 		msgErrorEl.classList.add('popup__msgError_type_close');
 	}
-	if (checkCardInputs(el)) {
-		enabledPopupButton(el);
+	if (checkCardInputs(evt)) {
+		enabledPopupButton(evt);
 	}
 }
 
@@ -225,29 +244,29 @@ const isUrl = value => {
 }
 
 // применяем toggleInputError при условии
-const checkInputError = el => {
-	const currentInputLength = el.target.value.length;
+const checkInputError = evt => {
+	const currentInputLength = evt.target.value.length;
 	let inputLengthText;
-	if (el.target.id === 'popupAddCardLink') {
+	if (evt.target.id === 'popupAddCardLink') {
 		if (currentInputLength === 0) {
-			addInputError(el, msgError(el, 'link-empty'));
-		} else if (!isUrl(el.target.value)) {
-			addInputError(el, msgError(el, 'link-error'));
-		} else if (isUrl(el.target.value)) {
-			deleteInputError(el);
+			addInputError(evt, msgError(evt, 'link-empty'));
+		} else if (!isUrl(evt.target.value)) {
+			addInputError(evt, msgError(evt, 'link-error'));
+		} else if (isUrl(evt.target.value)) {
+			deleteInputError(evt);
 		}
 	} else {
 		if (currentInputLength === 0) {
-			addInputError(el, msgError(el, inputLengthText));
-		} else if (currentInputLength < inputLength[el.target.id][0]) {
+			addInputError(evt, msgError(evt, inputLengthText));
+		} else if (currentInputLength < inputLength[evt.target.id][0]) {
 			inputLengthText = 'less';
-			addInputError(el, msgError(el, inputLengthText));
-		} else if (currentInputLength >= inputLength[el.target.id][0] && currentInputLength <= inputLength[el.target.id][1]) {
+			addInputError(evt, msgError(evt, inputLengthText));
+		} else if (currentInputLength >= inputLength[evt.target.id][0] && currentInputLength <= inputLength[evt.target.id][1]) {
 			inputLengthText = 'matches';
-			deleteInputError(el, msgError(el, inputLengthText));
-		} else if (currentInputLength > inputLength[el.target.id][1]) {
+			deleteInputError(evt, msgError(evt, inputLengthText));
+		} else if (currentInputLength > inputLength[evt.target.id][1]) {
 			inputLengthText = 'more';
-			addInputError(el, msgError(el, inputLengthText));
+			addInputError(evt, msgError(evt, inputLengthText));
 		}
 	}
 }
