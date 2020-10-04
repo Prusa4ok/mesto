@@ -46,13 +46,6 @@ const initialCards = [
 	}
 ];
 
-const inputLength = {
-	popupEditAddName: [2, 40],
-	popupEditAddDesc: [2, 200],
-	popupAddCardName: [2, 30]
-}
-
-
 const handleDelete = event => {
 	event.target.closest('.card').remove();
 };
@@ -108,10 +101,7 @@ function togglePopupEditName() {
 
 const togglePopupOpen = el => {
 	el.classList.toggle('popup_type_open');
-	popupButtonAddCardCreate.disabled = true;
-	if (!popupButtonAddCardCreate.classList.contains('popup__button_type_disabled')) {
-		popupButtonAddCardCreate.classList.add('popup__button_type_disabled');
-	}
+	blockButtonAddCard();
 }
 
 const createPopupAddCard = evt => {
