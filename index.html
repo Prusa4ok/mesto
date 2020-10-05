@@ -41,10 +41,10 @@
 		<form class="popup__container popup__container_type_edit" novalidate>
 			<h2 class="popup__heading">Редактировать профиль</h2>
 			<input id="popupEditAddName" type="text" class="popup__input popup__input_adding_name" value="Жак-Ив Кусто"
-				required>
+				required minlength="2" minlength="40">
 			<p id="popupEditAddName-error" class="popup__msgError popup__msgError_type_close">Вы пропустили это поле.</p>
 			<input id="popupEditAddDesc" type="text" class="popup__input popup__input_adding_description"
-				value="Исследователь океана" required>
+				value="Исследователь океана" required minlength="2" minlength="200">
 			<p id="popupEditAddDesc-error" class="popup__msgError popup__msgError_type_close">Вы пропустили это поле.</p>
 			<button type="submit" class="popup__button">Сохранить</button>
 			<button aria-label="закрыть" type="button" class="popup__close"></button>
@@ -55,9 +55,9 @@
 		<form class="popup__container popup__container_type_addCard" novalidate>
 			<p class="popup__heading">Новое место</p>
 			<input id="popupAddCardName" type="text" class="popup__input popup__input_adding_cardName" placeholder="Название"
-				required>
+				required minlength="2" minlength="30">
 			<p id="popupAddCardName-error" class="popup__msgError popup__msgError_type_close">Вы пропустили это поле.</p>
-			<input id="popupAddCardLink" type="text" class="popup__input popup__input_adding_cardLink"
+			<input id="popupAddCardLink" type="url" class="popup__input popup__input_adding_cardLink"
 				placeholder="Ссылка на картинку" required>
 			<p id="popupAddCardLink-error" class="popup__msgError popup__msgError_type_close">Введите адрес сайта.</p>
 			<button id="popupAddCardCreate" type="submit" class="popup__button" disabled>Создать</button>
@@ -66,7 +66,7 @@
 	</div>
 
 	<div class="popup page__popup popup_type_gallery">
-		<form class="popup__container popup__container_type_gallery" novalidate>
+		<form class="popup__container popup__container_type_gallery">
 			<img src="#" class="popup__img" alt="фото из галереи">
 			<button aria-label="закрыть" type="button" class="popup__close"></button>
 			<p class="popup__desc"></p>
@@ -84,8 +84,8 @@
 		</li>
 	</template>
 
-	<script src="script/script.js"></script>
-	<script src="script/validate.js"></script>
+	<script defer src="script/script.js"></script>
+	<script defer src="script/validate.js"></script>
 </body>
 
 </html>
