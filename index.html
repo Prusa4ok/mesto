@@ -41,10 +41,10 @@
 		<form class="popup__container popup__container_type_edit" novalidate>
 			<h2 class="popup__heading">Редактировать профиль</h2>
 			<input id="popupEditAddName" type="text" class="popup__input popup__input_adding_name" value="Жак-Ив Кусто"
-				required minlength="2" minlength="40">
+				required minlength="2" maxlength="40">
 			<p id="popupEditAddName-error" class="popup__msgError popup__msgError_type_close">Вы пропустили это поле.</p>
 			<input id="popupEditAddDesc" type="text" class="popup__input popup__input_adding_description"
-				value="Исследователь океана" required minlength="2" minlength="200">
+				value="Исследователь океана" required minlength="2" maxlength="200">
 			<p id="popupEditAddDesc-error" class="popup__msgError popup__msgError_type_close">Вы пропустили это поле.</p>
 			<button type="submit" class="popup__button">Сохранить</button>
 			<button aria-label="закрыть" type="button" class="popup__close"></button>
@@ -55,7 +55,7 @@
 		<form class="popup__container popup__container_type_addCard" novalidate>
 			<p class="popup__heading">Новое место</p>
 			<input id="popupAddCardName" type="text" class="popup__input popup__input_adding_cardName" placeholder="Название"
-				required minlength="2" minlength="30">
+				required minlength="2" maxlength="30">
 			<p id="popupAddCardName-error" class="popup__msgError popup__msgError_type_close">Вы пропустили это поле.</p>
 			<input id="popupAddCardLink" type="url" class="popup__input popup__input_adding_cardLink"
 				placeholder="Ссылка на картинку" required>
