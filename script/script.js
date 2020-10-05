@@ -55,7 +55,7 @@ const handleLike = el => {
 };
 
 // разворачиваем картинку для просмотра
-let determinGalleryItems = el => {
+const determinGalleryItems = el => {
 	const currentCard = el.target.closest('.card');
 	const cardDescription = currentCard.querySelector('.card__description').textContent;
 	const popupImg = popupGallery.querySelector('.popup__img');
@@ -67,7 +67,7 @@ let determinGalleryItems = el => {
 }
 
 const openImg = () => {
-	togglePopupOpen(popupGallery);
+	openPopup(popupGallery);
 }
 
 
@@ -93,15 +93,22 @@ const addCard = (link, name) => {
 	cardsList.prepend(getCardElement(link, name));
 }
 
+const addStartCard = (link, name) => {
+	cardsList.append(getCardElement(link, name));
+}
+
 function togglePopupEditName() {
-	togglePopupOpen(popupEditName);
+	openPopup(popupEditName);
 	popupName.value = profileName.textContent;
 	popupDescription.value = profileDescription.textContent;
 }
 
-const togglePopupOpen = el => {
-	el.classList.toggle('popup_type_open');
-	blockButtonAddCard();
+const closePopup = () => {
+	page.querySelector('.popup_type_open').classList.remove('popup_type_open');
+}
+
+const openPopup = el => {
+	el.classList.add('popup_type_open');
 }
 
 const createPopupAddCard = evt => {
@@ -109,29 +116,25 @@ const createPopupAddCard = evt => {
 	addCard(popupCardLink.value, popupCardName.value);
 	popupCardLink.value = '';
 	popupCardName.value = '';
-	togglePopupOpen(popupAddCard);
+	closePopup(popupAddCard);
 }
 
 function savePopupEditName(evt) {
 	evt.preventDefault();
 	profileName.textContent = popupName.value;
 	profileDescription.textContent = popupDescription.value;
-	togglePopupOpen(popupEditName);
+	closePopup(popupEditName);
 }
 
 const popupAddCardToggle = () => {
-	togglePopupOpen(popupAddCard);
+	openPopup(popupAddCard);
+	blockButtonAddCard();
 }
 
-initialCards.forEach(card => addCard(card.link, card.name));
+initialCards.forEach(card => addStartCard(card.link, card.name));
 
 edit.addEventListener('click', togglePopupEditName);
 popupButtonAddCard.addEventListener('click', popupAddCardToggle);
-
-// закрывание попапа
-const closePopup = evt => {
-	evt.target.closest('.popup').classList.remove('popup_type_open');
-}
 
 const closePopupOverlay = evt => {
 	if (evt.target.classList.contains('page__popup')) {
@@ -149,7 +152,7 @@ const closePopupEsc = evt => {
 	}
 }
 
-page.addEventListener('keydown', closePopupEsc);
+document.addEventListener('keydown', closePopupEsc);
 popups.forEach(item => item.addEventListener('click', closePopupOverlay));
 popupButtonsClose.forEach(item => item.addEventListener('click', closePopup));
 popupFormEdit.addEventListener('submit', savePopupEditName);
