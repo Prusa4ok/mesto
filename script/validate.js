@@ -18,6 +18,7 @@ const enableValidation = array => {
 	}
 
 	const enabledPopupButton = evt => {
+		// у каждого свой current container, а при переносе в enableValidation начинает ругаться консоль
 		const currentContainer = evt.target.closest(array.formSelector);
 		const currentButton = currentContainer.querySelector(array.submitButtonSelector);
 		currentContainer.querySelector(array.submitButtonSelector).classList.remove(array.inactiveButtonClass);
@@ -60,7 +61,7 @@ const enableValidation = array => {
 		}
 	}
 
-	popupInputs.forEach(item => item.addEventListener('keyup', checkInputError));
+	popupInputs.forEach(item => item.addEventListener('input', checkInputError));
 	popupInputs.forEach(item => item.addEventListener('keyup', checkCardInputs));
 }
 
