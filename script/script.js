@@ -109,6 +109,7 @@ const closePopup = () => {
 
 const openPopup = el => {
 	el.classList.add('popup_type_open');
+	document.addEventListener('keydown', closePopupEsc);
 }
 
 const createPopupAddCard = evt => {
@@ -152,7 +153,6 @@ const closePopupEsc = evt => {
 	}
 }
 
-document.addEventListener('keydown', closePopupEsc);
 popups.forEach(item => item.addEventListener('click', closePopupOverlay));
 popupButtonsClose.forEach(item => item.addEventListener('click', closePopup));
 popupFormEdit.addEventListener('submit', savePopupEditName);
