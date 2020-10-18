@@ -7,14 +7,25 @@ const blockButtonAddCard = () => {
 
 let parameters = {};
 
-const enableValidation = (object) => {
-	parameters = object;
+const enableValidation = (obj) => {
+	parameters = obj;
+}
+
+const defineInputs = evt => {
+	return inputs = evt.target.closest(parameters.formSelector).querySelectorAll(`.${parameters.inputSelector}`);
 }
 
 const checkCardInputs = evt => {
-	const inputs = evt.target.closest(parameters.formSelector).querySelectorAll(`.${parameters.inputSelector}`);
+	defineInputs(evt);
 	const checking = () => {
-		return !inputs[0].classList.contains(parameters.inputErrorClass) && !inputs[1].classList.contains(parameters.inputErrorClass);
+		for (let i = 0; i < inputs.length; i++) {
+			if (inputs[i].classList.contains(parameters.inputErrorClass)) {
+				break;
+			}
+			else {
+				return true;
+			}
+		}
 	}
 	if (inputs[0].value.length > 0 && inputs[1].value.length > 0) {
 		return checking();
@@ -53,6 +64,7 @@ const deleteInputError = evt => {
 }
 
 const checkInputError = evt => {
+	defineInputs(evt);
 	const elErrorMessage = evt.target.closest(parameters.formSelector).querySelector(`#${evt.target.id}-error`);
 	if (!evt.target.reportValidity()) {
 		elErrorMessage.classList.remove(parameters.errorClass);
@@ -61,7 +73,13 @@ const checkInputError = evt => {
 	} else {
 		elErrorMessage.classList.remove(parameters.errorClass);
 		elErrorMessage.textContent = '';
-		deleteInputError(evt)
+	}
+	for (let i = 0; i < inputs.length; i++) {
+		if (!inputs[i].checkValidity()) {
+			break;
+		} else {
+			deleteInputError(evt);
+		}
 	}
 }
 

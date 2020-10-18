@@ -104,7 +104,7 @@ function togglePopupEditName() {
 }
 
 const closePopup = el => {
-	el.target.classList.remove('popup_type_open');
+	el.classList.remove('popup_type_open');
 }
 
 const openPopup = el => {
@@ -139,7 +139,7 @@ popupButtonAddCard.addEventListener('click', popupAddCardToggle);
 
 const closePopupOverlay = evt => {
 	if (evt.target.classList.contains('page__popup')) {
-		closePopup(evt);
+		closePopup(evt.target);
 	}
 }
 
