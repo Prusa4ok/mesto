@@ -103,8 +103,8 @@ function togglePopupEditName() {
 	popupDescription.value = profileDescription.textContent;
 }
 
-const closePopup = () => {
-	page.querySelector('.popup_type_open').classList.remove('popup_type_open');
+const closePopup = el => {
+	el.target.classList.remove('popup_type_open');
 }
 
 const openPopup = el => {
@@ -154,6 +154,6 @@ const closePopupEsc = evt => {
 }
 
 popups.forEach(item => item.addEventListener('click', closePopupOverlay));
-popupButtonsClose.forEach(item => item.addEventListener('click', closePopup));
+popupButtonsClose.forEach(item => item.addEventListener('click', item => closePopup(item.target.closest('.popup'))));
 popupFormEdit.addEventListener('submit', savePopupEditName);
 popupFormAddCard.addEventListener('submit', createPopupAddCard);
