@@ -19,7 +19,7 @@ const checkCardInputs = evt => {
 	defineInputs(evt);
 	const checking = () => {
 		for (let i = 0; i < inputs.length; i++) {
-			if (inputs[i].classList.contains(parameters.inputErrorClass)) {
+			if (!inputs[i].classList.contains(parameters.inputErrorClass)) {
 				break;
 			}
 			else {
@@ -27,8 +27,10 @@ const checkCardInputs = evt => {
 			}
 		}
 	}
-	if (inputs[0].value.length > 0 && inputs[1].value.length > 0) {
-		return checking();
+	for (let i = 0; i < inputs.length; i++) {
+		if (inputs[i].value > 0) {
+			return checking();
+		}
 	}
 }
 
@@ -58,30 +60,36 @@ const deleteInputError = evt => {
 		evt.target.classList.remove(parameters.inputErrorClass);
 		msgErrorEl.classList.add(parameters.errorClass);
 	}
-	if (checkCardInputs(evt)) {
-		enabledPopupButton(evt);
-	}
+}
+
+const getDescriptionErrorInput = target => {
+	const descriptionErrorInput = target.closest(parameters.formSelector).querySelector(`#${target.id}-error`);
+	return descriptionErrorInput;
 }
 
 const checkInputError = evt => {
 	defineInputs(evt);
-	const elErrorMessage = evt.target.closest(parameters.formSelector).querySelector(`#${evt.target.id}-error`);
-	if (!evt.target.reportValidity()) {
-		elErrorMessage.classList.remove(parameters.errorClass);
-		elErrorMessage.textContent = evt.target.validationMessage;
-		disabledPopupButton(evt);
-	} else {
-		elErrorMessage.classList.remove(parameters.errorClass);
-		elErrorMessage.textContent = '';
-	}
+	let errors = 0;
 	for (let i = 0; i < inputs.length; i++) {
 		if (!inputs[i].checkValidity()) {
-			break;
-		} else {
-			deleteInputError(evt);
+			inputs[i].classList.add(parameters.inputErrorClass);
+			disabledPopupButton(evt);
+			errors++;
+			getDescriptionErrorInput(inputs[i]).textContent = inputs[i].validationMessage;
+			getDescriptionErrorInput(inputs[i]).classList.remove(parameters.closeErrorClass);
+		}
+		else if (inputs[i].checkValidity()) {
+			inputs[i].classList.remove(parameters.inputErrorClass);
+			inputs[i].classList.remove(parameters.inputErrorClass);
+			getDescriptionErrorInput(inputs[i]).textContent = '';
+			getDescriptionErrorInput(inputs[i]).classList.add(parameters.closeErrorClass);
 		}
 	}
+	if (errors === 0) {
+		enabledPopupButton(evt);
+	}
 }
+
 
 popupInputs.forEach(item => item.addEventListener('input', checkInputError));
 popupInputs.forEach(item => item.addEventListener('keyup', checkCardInputs));
@@ -93,6 +101,6 @@ enableValidation({
 	submitButtonSelector: '.popup__button',
 	inactiveButtonClass: 'popup__button_type_disabled',
 	inputErrorClass: 'popup__input_type_error',
-	errorClass: 'popup__msgError_type_close',
+	closeErrorClass: 'popup__msgError_type_close',
 	inputLinkSelector: 'popupAddCardLink'
 });
