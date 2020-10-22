@@ -105,6 +105,7 @@ function togglePopupEditName() {
 
 const closePopup = el => {
 	el.classList.remove('popup_type_open');
+	document.removeEventListener('keydown', closePopupEsc);
 }
 
 const openPopup = el => {
