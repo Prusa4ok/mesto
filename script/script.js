@@ -146,7 +146,7 @@ const closePopupOverlay = evt => {
 
 const closePopupEsc = evt => {
 	if (evt.key === 'Escape') {
-		page.querySelector('.popup_type_open').classList.remove('popup_type_open');
+		closePopup(page.querySelector('.popup_type_open'));
 	};
 }
 
