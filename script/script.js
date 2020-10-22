@@ -146,12 +146,8 @@ const closePopupOverlay = evt => {
 
 const closePopupEsc = evt => {
 	if (evt.key === 'Escape') {
-		popups.forEach(item => {
-			if (item.classList.contains('popup_type_open')) {
-				item.classList.remove('popup_type_open');
-			};
-		});
-	}
+		page.querySelector('.popup_type_open').classList.remove('popup_type_open');
+	};
 }
 
 popups.forEach(item => item.addEventListener('click', closePopupOverlay));
