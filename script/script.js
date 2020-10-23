@@ -3,12 +3,10 @@ const edit = page.querySelector('.button_type_edit');
 const popups = page.querySelectorAll('.popup');
 const popupAddCard = page.querySelector('.popup_type_addCard');
 const popupEditName = page.querySelector('.popup__editName');
-const popupInputs = page.querySelectorAll('.popup__input');
 const popupGallery = page.querySelector('.popup_type_gallery');
 const popupFormEdit = page.querySelector('.popup__container_type_edit');
 const popupFormAddCard = page.querySelector('.popup__container_type_addCard');
 const popupButtonAddCard = page.querySelector('.button_type_add');
-const popupButtonAddCardCreate = page.querySelector('#popupAddCardCreate');
 const popupButtonsClose = page.querySelectorAll('.popup__close');
 const popupName = page.querySelector('.popup__input_adding_name');
 const popupDescription = page.querySelector('.popup__input_adding_description');
@@ -130,7 +128,6 @@ function savePopupEditName(evt) {
 
 const popupAddCardToggle = () => {
 	openPopup(popupAddCard);
-	blockButtonAddCard();
 }
 
 initialCards.forEach(card => addStartCard(card.link, card.name));
