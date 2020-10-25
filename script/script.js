@@ -117,6 +117,7 @@ const createPopupAddCard = evt => {
 	popupCardLink.value = '';
 	popupCardName.value = '';
 	closePopup(popupAddCard);
+	blockButton(popupCardName, ".popup__container", ".popup__button", "popup__button_type_disabled");
 }
 
 function savePopupEditName(evt) {

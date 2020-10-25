@@ -18,14 +18,16 @@ const removeErrorMessage = (input, closeErrorClass, formSelector) => {
 }
 
 const getInputs = inputSelector => page.querySelectorAll(inputSelector);
-const getActiveInputList = (openedPopup, inputSelector) => openedPopup.querySelectorAll(inputSelector).forEach('input', item => console.log(item));
 const activeForm = (el, form) => el.closest(form);
 const activeButton = (input, formSelector, submitButtonSelector) => activeForm(input, formSelector).querySelector(submitButtonSelector);
+const inputsActiveForm = (input, formSelector, inputSelector) => activeForm(input, formSelector).querySelectorAll(inputSelector);
 
 const addInputError = (input, inputErrorClass) => input.classList.add(inputErrorClass);
 const removeInputError = (input, inputErrorClass) => input.classList.remove(inputErrorClass);
 
-const checkValidityState = (input, inputErrorClass, formSelector, submitButtonSelector, inactiveButtonClass, closeErrorClass) => {
+const checkValidityState = (input, inputErrorClass, formSelector, submitButtonSelector, inactiveButtonClass, closeErrorClass, inputSelector) => {
+	const inputs = inputsActiveForm(input, formSelector, inputSelector);
+	let enableInputs = 0;
 	if (input.validity.valid) {
 		if (input.classList.contains(inputErrorClass)) {
 			removeInputError(input, inputErrorClass);
@@ -37,19 +39,24 @@ const checkValidityState = (input, inputErrorClass, formSelector, submitButtonSe
 	}
 	if (activeForm(input, formSelector).querySelector(`.${inputErrorClass}`)) {
 		blockButton(input, formSelector, submitButtonSelector, inactiveButtonClass);
-	} else unblockButton(input, formSelector, submitButtonSelector, inactiveButtonClass);
+	}
+	for (let i = 0; i < inputs.length; i++) {
+		if (inputs[i].value.length > 0 && !inputs[i].classList.contains(inputErrorClass)) {
+			enableInputs++;
+		}
+		if (enableInputs === inputs.length) {
+			unblockButton(input, formSelector, submitButtonSelector, inactiveButtonClass);
+		}
+	}
 }
-
-const defineFormSelector = (activePopup, evt) => openedPopup = evt.target.closest(activePopup);
 
 const enableValidation = validationConfig => {
 
 	const inputs = getInputs(validationConfig.inputSelector);
 
 	inputs.forEach(item => item.addEventListener('input', evt => {
-		defineFormSelector(validationConfig.activePopup, evt),
-			checkValidityState(evt.target, validationConfig.inputErrorClass, validationConfig.formSelector, validationConfig.submitButtonSelector,
-				validationConfig.inactiveButtonClass, validationConfig.closeErrorClass);
+		checkValidityState(evt.target, validationConfig.inputErrorClass, validationConfig.formSelector, validationConfig.submitButtonSelector,
+			validationConfig.inactiveButtonClass, validationConfig.closeErrorClass, validationConfig.inputSelector);
 	}));
 }
 
@@ -60,5 +67,4 @@ enableValidation({
 	inactiveButtonClass: 'popup__button_type_disabled',
 	inputErrorClass: 'popup__input_type_error',
 	closeErrorClass: 'popup__msgError_type_close',
-	activePopup: '.popup_type_open'
 });
