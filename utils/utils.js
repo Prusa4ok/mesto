@@ -1,39 +1,49 @@
 import {
-	popupGallery, popupName, profileName, popupDescription, profileDescription, popupAddCard,
-	popupCardLink, popupCardName, cardsList, popupEditName, page
+	validationSettings,
+	popupGallery,
+	popupName,
+	profileName,
+	popupDescription,
+	profileDescription,
+	popupAddCard,
+	popupEditName,
+	page,
+	popupImg,
+	popupDesc
 } from '../utils/constants.js'
-import { Card } from '../scripts/card.js'
+import { Card } from '../scripts/Card.js'
+import { FormValidator } from '../scripts/Form-Validator.js';
 
 export const modalAction = {
-	popupImg: popupGallery.querySelector('.popup__img'),
-
-	popupDesc: popupGallery.querySelector('.popup__desc'),
 
 	determinGalleryItems: el => {
 		const currentCard = el.target.closest('.card');
 		const cardDescription = currentCard.querySelector('.card__description').textContent;
-		modalAction.popupImg.src = el.target.src;
-		modalAction.popupImg.alt = cardDescription;
-		modalAction.popupDesc.textContent = cardDescription;
+		popupImg.src = el.target.src;
+		popupImg.alt = cardDescription;
+		popupDesc.textContent = cardDescription;
 		modalAction.openPopup(popupGallery);
 	},
 
 	openPopup: el => {
 		el.classList.add('popup_type_open');
 		document.addEventListener('keydown', modalAction.closePopupEsc);
-		modalAction.hideInputsMsgError(el);
-		popupName.value = profileName.textContent;
-		popupDescription.value = profileDescription.textContent;
+
+	},
+
+	activateValidation: el => {
+		const validationForm = new FormValidator(validationSettings, el);
+		validationForm.enableValidation();
 		if (el === popupAddCard) {
 			modalAction.deleteImputsValueAddCard();
 		};
+		modalAction.deleteImputsValueAddCard();
+		modalAction.fillingInput();
 	},
 
-	hideInputsMsgError: el => {
-		el.querySelectorAll('.popup__msgError').forEach(msg => {
-			if (!msg.classList.contains('popup__msgError_type_close'))
-				msg.classList.add('popup__msgError_type_close');
-		});
+	fillingInput: () => {
+		popupName.value = profileName.textContent;
+		popupDescription.value = profileDescription.textContent;
 	},
 
 	deleteImputsValueAddCard: () => {
@@ -57,22 +67,9 @@ export const modalAction = {
 		}
 	},
 
-	createPopupAddCard: evt => {
-		evt.preventDefault();
-		modalAction.addCard(popupCardLink.value, popupCardName.value);
-		popupCardLink.value = '';
-		popupCardName.value = '';
-		modalAction.closePopup(popupAddCard);
-	},
-
 	createCard: (link, name) => {
 		const newCard = new Card(link, name);
 		return newCard;
-	},
-
-	addCard: (link, name) => {
-		const newCard = modalAction.createCard(link, name);
-		cardsList.prepend(newCard.getCardElement(newCard.name, newCard.link));
 	},
 
 	savePopupEditName: evt => {

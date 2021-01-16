@@ -14,7 +14,9 @@ export class Card {
 	cardButtonLike = this.card.querySelector('.button__like');
 
 	//открытие
-	_handleOpen = el => modalAction.determinGalleryItems(el);
+	_handleOpen = el => {
+		modalAction.determinGalleryItems(el);
+	}
 
 	//лайк
 	_handleLike = el => {

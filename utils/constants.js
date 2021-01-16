@@ -16,6 +16,8 @@ export const popupDescription = page.querySelector('.popup__input_adding_descrip
 export const profileDescription = page.querySelector('.profile__description');
 export const popupCardLink = page.querySelector('.popup__input_adding_cardLink');
 export const popupCardName = page.querySelector('.popup__input_adding_cardName');
+export const popupImg = popupGallery.querySelector('.popup__img');
+export const popupDesc = popupGallery.querySelector('.popup__desc');
 
 export const initialCards = [
 	{
@@ -45,10 +47,11 @@ export const initialCards = [
 ];
 
 export const validationSettings = {
-	formSelector: '.popup__container',
 	inputSelector: '.popup__input',
 	submitButtonSelector: '.popup__button',
 	inactiveButtonClass: 'popup__button_type_disabled',
 	inputErrorClass: 'popup__input_type_error',
 	closeErrorClass: 'popup__msgError_type_close',
+	errorClass: 'popup__msgError',
+	openPopupClass: '.popup_type_open'
 }
