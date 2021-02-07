@@ -7,8 +7,7 @@ export class FormValidator {
 	}
 
 	enableValidation = () => {
-		const currentPopup = page.querySelector(this._settings.openPopupClass);
-		if (currentPopup.querySelector(this._settings.inputSelector) != null) {
+		if (this._formElement.querySelector(this._settings.inputSelector) != null) {
 			this._setInputListValidity();
 			this._blockCurrentButton();
 			this._hideInputsMsgError();
@@ -44,18 +43,17 @@ export class FormValidator {
 	_setInputListValidity = () => {
 		this._getInputList().forEach(input => input.addEventListener('keyup', this._validateInput));
 	}
+
 	_hideInputsMsgError = () => {
-		const currentPopup = page.querySelector(this._settings.openPopupClass);
-		currentPopup.querySelectorAll(`.${this._settings.errorClass}`).forEach(msg => {
+		this._formElement.querySelectorAll(`.${this._settings.errorClass}`).forEach(msg => {
 			if (!msg.classList.contains(this._settings.closeErrorClass))
 				msg.classList.add(this._settings.closeErrorClass);
 		});
 	}
 
 	_blockCurrentButton = () => {
-		const currentButton = page.querySelector(this._settings.openPopupClass).querySelector(this._settings.submitButtonSelector);
-		currentButton.classList.add(this._settings.inactiveButtonClass);
-		currentButton.disabled = true;
+		this._formElement.classList.add(this._settings.inactiveButtonClass);
+		this._formElement.disabled = true;
 	}
 
 	_unblockCurrentButton = () => {

@@ -8,10 +8,13 @@ export class Card {
 		this.link = link;
 	}
 
-	card = tempCard.cloneNode(true);
-	cardImg = this.card.querySelector('.card__img');
-	cardButtonDelete = this.card.querySelector('.button__delete');
-	cardButtonLike = this.card.querySelector('.button__like');
+	_getTemplate = () => {
+		this.card = tempCard.cloneNode(true);
+		this.cardImg = this.card.querySelector('.card__img');
+		this.cardButtonDelete = this.card.querySelector('.button__delete');
+		this.cardButtonLike = this.card.querySelector('.button__like');
+	}
+
 
 	//открытие
 	_handleOpen = el => {
@@ -37,6 +40,8 @@ export class Card {
 
 	//создание карточки
 	getCardElement = (link, name) => {
+		this._getTemplate();
+
 		this.cardImg.src = link;
 		this.cardImg.alt = name;
 		this.card.querySelector('.card__description').textContent = name;
