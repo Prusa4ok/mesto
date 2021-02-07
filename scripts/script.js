@@ -56,7 +56,7 @@ const savePopupEditName = evt => {
 }
 
 initialCards.forEach(card => {
-	const startCard = new Card(card.name, card.link);
+	const startCard = createCard(card.name, card.link);
 	cardsList.append(startCard.getCardElement(card.link, card.name));
 });
 
