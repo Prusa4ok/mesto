@@ -1,5 +1,10 @@
 import { modalAction } from '../utils/utils.js'
-import { tempCard } from '../utils/constants.js'
+import {
+	tempCard,
+	popupGallery,
+	popupImg,
+	popupDesc
+} from '../utils/constants.js'
 
 export class Card {
 
@@ -15,10 +20,10 @@ export class Card {
 		this.cardButtonLike = this.card.querySelector('.button__like');
 	}
 
-
 	//открытие
 	_handleOpen = el => {
-		modalAction.determinGalleryItems(el);
+		this._fillPopupGallery();
+		modalAction.openPopup(el); //нужно открыть popup_type_gallery и передать значения картинки и подписи
 	}
 
 	//лайк
@@ -31,8 +36,20 @@ export class Card {
 		event.target.closest('.card').remove();
 	}
 
+	//заполнение popup_type_gallery (открытие реализовано, отсалось заполнить данными)
+	_fillPopupGallery = () => {
+		let currentCard = event.currentTarget;
+		console.log(currentCard.src)
+		console.log(currentCard.closest('.card__description'))
+		// popupImg = currentCard.src;
+		// popupDesc = currentCard.querySelector('.card__description').textContent;
+	}
+
 	//установка слушателей
 	_setEventListener = () => {
+		this.cardImg.addEventListener('click', () => {
+			this._handleOpen(popupGallery)
+		});
 		this.cardImg.addEventListener('click', modalAction.determinGalleryItems);
 		this.cardButtonDelete.addEventListener('click', this._handleDelete);
 		this.cardButtonLike.addEventListener('click', this._handleLike);

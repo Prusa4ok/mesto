@@ -38,14 +38,14 @@ const createPopupAddCard = evt => {
 	modalAction.closePopup(popupAddCard);
 }
 
-const fillEditProfileForm = () => {
-	popupName.value = profileName.textContent;
-	popupDescription.value = profileDescription.textContent;
-}
-
 const createCard = (link, name) => {
 	const newCard = new Card(link, name);
 	return newCard;
+}
+
+const fillEditProfileForm = () => {
+	popupName.value = profileName.textContent;
+	popupDescription.value = profileDescription.textContent;
 }
 
 const savePopupEditName = evt => {
