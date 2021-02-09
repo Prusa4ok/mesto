@@ -23,7 +23,7 @@ export class Card {
 	//открытие
 	_handleOpen = el => {
 		this._fillPopupGallery();
-		modalAction.openPopup(el); //нужно открыть popup_type_gallery и передать значения картинки и подписи
+		modalAction.openPopup(el);
 	}
 
 	//лайк
@@ -36,13 +36,11 @@ export class Card {
 		event.target.closest('.card').remove();
 	}
 
-	//заполнение popup_type_gallery (открытие реализовано, отсалось заполнить данными)
+	//заполнение popup_type_gallery
 	_fillPopupGallery = () => {
 		let currentCard = event.currentTarget;
-		console.log(currentCard.src)
-		console.log(currentCard.closest('.card__description'))
-		// popupImg = currentCard.src;
-		// popupDesc = currentCard.querySelector('.card__description').textContent;
+		popupImg.src = currentCard.src;
+		popupDesc.textContent = currentCard.closest('.card').querySelector('.card__description').textContent;
 	}
 
 	//установка слушателей
