@@ -23,7 +23,7 @@ const validateEditForm = new FormValidator(validationSettings, popupEditName);
 validateEditForm.enableValidation();
 
 const addCard = (link, name) => {
-	const newCard = modalAction.createCard(link, name);
+	const newCard = createCard(link, name);
 	cardsList.prepend(newCard.getCardElement(newCard.name, newCard.link));
 }
 
@@ -43,6 +43,11 @@ const createCard = (link, name) => {
 	return newCard;
 }
 
+initialCards.forEach(card => {
+	const startCard = createCard(card.name, card.link);
+	cardsList.append(startCard.getCardElement(card.link, card.name));
+});
+
 const fillEditProfileForm = () => {
 	popupName.value = profileName.textContent;
 	popupDescription.value = profileDescription.textContent;
@@ -55,13 +60,8 @@ const savePopupEditName = evt => {
 	modalAction.closePopup(popupEditName);
 }
 
-initialCards.forEach(card => {
-	const startCard = createCard(card.name, card.link);
-	cardsList.append(startCard.getCardElement(card.link, card.name));
-});
-
 popupButtonsClose.forEach(item => item.addEventListener('click', item => modalAction.closePopup(item.target.closest('.popup'))));
 popups.forEach(item => item.addEventListener('click', modalAction.closePopupOverlay))
 popupFormAddCard.addEventListener('submit', createPopupAddCard);
 popupFormEdit.addEventListener('submit', modalAction.savePopupEditName);
-// buttonOpenPopupAddCard.addEventListener('click',)
+buttonOpenPopupAddCard.addEventListener('click', () => modalAction.openPopup(popupAddCard));

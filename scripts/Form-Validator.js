@@ -52,8 +52,8 @@ export class FormValidator {
 	}
 
 	_blockCurrentButton = () => {
-		this._formElement.classList.add(this._settings.inactiveButtonClass);
-		this._formElement.disabled = true;
+		// this._formElement.classList.add(this._settings.inactiveButtonClass);
+		// this._formElement.disabled = true;
 	}
 
 	_unblockCurrentButton = () => {
