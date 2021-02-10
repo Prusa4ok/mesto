@@ -64,4 +64,7 @@ popupButtonsClose.forEach(item => item.addEventListener('click', item => modalAc
 popups.forEach(item => item.addEventListener('click', modalAction.closePopupOverlay))
 popupFormAddCard.addEventListener('submit', createPopupAddCard);
 popupFormEdit.addEventListener('submit', modalAction.savePopupEditName);
-buttonOpenPopupAddCard.addEventListener('click', () => modalAction.openPopup(popupAddCard));
+buttonOpenPopupAddCard.addEventListener('click', () => {
+	modalAction.openPopup(popupAddCard)
+	validateAddForm.enableValidation();
+});

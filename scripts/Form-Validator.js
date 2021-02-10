@@ -11,6 +11,7 @@ export class FormValidator {
 			this._setInputListValidity();
 			this._blockCurrentButton();
 			this._hideInputsMsgError();
+			this._getCurrentButton();
 		}
 	}
 
@@ -24,6 +25,10 @@ export class FormValidator {
 			this._formElement.querySelector(`#${currentInput.id}-error`).classList.add(this._settings.closeErrorClass)
 		}
 
+		this._checkInput();
+	}
+
+	_checkInput = () => {
 		let checker = 0;
 		this._getInputList().forEach(input => {
 			if (input.checkValidity()) {
@@ -40,6 +45,10 @@ export class FormValidator {
 
 	_getInputList = () => { return this._formElement.querySelectorAll(this._settings.inputSelector); }
 
+	_getCurrentButton = () => {
+		this._currentButton = this._formElement.querySelector(this._settings.submitButtonSelector);
+	}
+
 	_setInputListValidity = () => {
 		this._getInputList().forEach(input => input.addEventListener('keyup', this._validateInput));
 	}
@@ -52,8 +61,10 @@ export class FormValidator {
 	}
 
 	_blockCurrentButton = () => {
-		// this._formElement.classList.add(this._settings.inactiveButtonClass);
-		// this._formElement.disabled = true;
+		if (this._currentButton) {
+			this._currentButton.classList.add(this._settings.inactiveButtonClass);
+			this._currentButton.disabled = true;
+		}
 	}
 
 	_unblockCurrentButton = () => {
