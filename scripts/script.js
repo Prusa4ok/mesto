@@ -65,6 +65,7 @@ popups.forEach(item => item.addEventListener('click', modalAction.closePopupOver
 popupFormAddCard.addEventListener('submit', createPopupAddCard);
 popupFormEdit.addEventListener('submit', modalAction.savePopupEditName);
 buttonOpenPopupAddCard.addEventListener('click', () => {
-	modalAction.openPopup(popupAddCard)
+	modalAction.openPopup(popupAddCard);
+	deleteImputsValueAddCard();
 	validateAddForm.enableValidation();
 });
