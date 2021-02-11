@@ -9,11 +9,17 @@ import {
 	popupEditName,
 	cardsList,
 	popupButtonsClose,
+	popupButtonEdit,
 	popups,
 	popupFormEdit,
 	popupCardLink,
 	popupCardName,
-	buttonOpenPopupAddCard
+	buttonOpenPopupAddCard,
+	profileName,
+	popupName,
+	popupDescription,
+	profileDescription
+
 } from '../utils/constants.js'
 
 const validateAddForm = new FormValidator(validationSettings, popupFormAddCard);
@@ -63,7 +69,14 @@ const savePopupEditName = evt => {
 popupButtonsClose.forEach(item => item.addEventListener('click', item => modalAction.closePopup(item.target.closest('.popup'))));
 popups.forEach(item => item.addEventListener('click', modalAction.closePopupOverlay))
 popupFormAddCard.addEventListener('submit', createPopupAddCard);
-popupFormEdit.addEventListener('submit', modalAction.savePopupEditName);
+popupFormEdit.addEventListener('submit', evt => {
+	savePopupEditName(evt);
+	validateEditForm.enableValidation(); //осталось разобраться с disabled кнопки и msgError при закрытии попапа с некорректно заполненным попапом
+});
+popupButtonEdit.addEventListener('click', () => {
+	fillEditProfileForm();
+	modalAction.openPopup(popupEditName);
+})
 buttonOpenPopupAddCard.addEventListener('click', () => {
 	modalAction.openPopup(popupAddCard);
 	deleteImputsValueAddCard();

@@ -68,8 +68,10 @@ export class FormValidator {
 	}
 
 	_unblockCurrentButton = () => {
-		const currentButton = page.querySelector(this._settings.openPopupClass).querySelector(this._settings.submitButtonSelector);
-		currentButton.classList.remove(this._settings.inactiveButtonClass);
-		currentButton.disabled = false;
+		if (page.querySelector(this._settings.openPopupClass)) {
+			const currentButton = page.querySelector(this._settings.openPopupClass).querySelector(this._settings.submitButtonSelector);
+			currentButton.classList.remove(this._settings.inactiveButtonClass);
+			currentButton.disabled = false;
+		}
 	}
 }
