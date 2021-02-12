@@ -33,14 +33,14 @@ const addCard = (link, name) => {
 	cardsList.prepend(newCard.getCardElement(newCard.name, newCard.link));
 }
 
-const deleteImputsValueAddCard = () => {
-	popupAddCard.querySelectorAll('.popup__input').forEach(input => input.value = '');
+const deleteInputsValue = popup => {
+	popup.querySelectorAll('.popup__input').forEach(input => input.value = '');
 }
 
 const createPopupAddCard = evt => {
 	evt.preventDefault();
 	addCard(popupCardLink.value, popupCardName.value);
-	deleteImputsValueAddCard();
+	deleteInputsValue(popupAddCard);
 	modalAction.closePopup(popupAddCard);
 }
 
@@ -82,6 +82,6 @@ popupButtonEdit.addEventListener('click', () => {
 
 buttonOpenPopupAddCard.addEventListener('click', () => {
 	modalAction.openPopup(popupAddCard);
-	deleteImputsValueAddCard();
+	deleteInputsValue(popupAddCard);
 	validateAddForm.enableValidation();
 });
