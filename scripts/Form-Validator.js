@@ -9,8 +9,6 @@ export class FormValidator {
 	enableValidation = () => {
 		if (this._formElement.querySelector(this._settings.inputSelector) != null) {
 			this._setInputListValidity();
-			this._blockCurrentButton();
-			this._hideInputsMsgError();
 			this._getCurrentButton();
 		}
 	}

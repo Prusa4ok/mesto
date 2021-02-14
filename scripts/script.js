@@ -37,7 +37,7 @@ const deleteInputsValue = popup => {
 	popup.querySelectorAll('.popup__input').forEach(input => input.value = '');
 }
 
-const createPopupAddCard = evt => {
+const openPopupAddCard = evt => {
 	evt.preventDefault();
 	addCard(popupCardLink.value, popupCardName.value);
 	deleteInputsValue(popupAddCard);
@@ -49,9 +49,9 @@ const createCard = (link, name) => {
 	return newCard;
 }
 
-initialCards.forEach(card => {
-	const startCard = createCard(card.name, card.link);
-	cardsList.append(startCard.getCardElement(card.link, card.name));
+initialCards.forEach(initialCard => {
+	const card = createCard(initialCard.name, initialCard.link);
+	cardsList.append(card.getCardElement(initialCard.link, initialCard.name));
 });
 
 const fillEditProfileForm = () => {
@@ -68,14 +68,15 @@ const savePopupEditName = evt => {
 
 popupButtonsClose.forEach(item => item.addEventListener('click', item => modalAction.closePopup(item.target.closest('.popup'))));
 popups.forEach(item => item.addEventListener('click', modalAction.closePopupOverlay))
-popupFormAddCard.addEventListener('submit', createPopupAddCard);
+popupFormAddCard.addEventListener('submit', openPopupAddCard);
 
 popupFormEdit.addEventListener('submit', evt => {
 	savePopupEditName(evt);
 });
 
 popupButtonEdit.addEventListener('click', () => {
-	validateEditForm.enableValidation();
+	validateEditForm._blockCurrentButton();
+	validateEditForm._hideInputsMsgError();
 	fillEditProfileForm();
 	modalAction.openPopup(popupEditName);
 })
@@ -83,5 +84,6 @@ popupButtonEdit.addEventListener('click', () => {
 buttonOpenPopupAddCard.addEventListener('click', () => {
 	modalAction.openPopup(popupAddCard);
 	deleteInputsValue(popupAddCard);
-	validateAddForm.enableValidation();
+	validateAddForm._blockCurrentButton();
+	validateAddForm._hideInputsMsgError();
 });
