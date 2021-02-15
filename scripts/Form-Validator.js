@@ -37,7 +37,7 @@ export class FormValidator {
 		if (checker === this._getInputList().length) {
 			this._unblockCurrentButton();
 		} else {
-			this._blockCurrentButton();
+			this.blockCurrentButton();
 		}
 	}
 
@@ -51,14 +51,14 @@ export class FormValidator {
 		this._getInputList().forEach(input => input.addEventListener('keyup', this._validateInput));
 	}
 
-	_hideInputsMsgError = () => {
+	hideInputsMsgError = () => {
 		this._formElement.querySelectorAll(`.${this._settings.errorClass}`).forEach(msg => {
 			if (!msg.classList.contains(this._settings.closeErrorClass))
 				msg.classList.add(this._settings.closeErrorClass);
 		});
 	}
 
-	_blockCurrentButton = () => {
+	blockCurrentButton = () => {
 		if (this._currentButton) {
 			this._currentButton.classList.add(this._settings.inactiveButtonClass);
 			this._currentButton.disabled = true;

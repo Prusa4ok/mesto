@@ -75,8 +75,8 @@ popupFormEdit.addEventListener('submit', evt => {
 });
 
 popupButtonEdit.addEventListener('click', () => {
-	validateEditForm._blockCurrentButton();
-	validateEditForm._hideInputsMsgError();
+	validateEditForm.blockCurrentButton();
+	validateEditForm.hideInputsMsgError();
 	fillEditProfileForm();
 	modalAction.openPopup(popupEditName);
 })
@@ -84,6 +84,6 @@ popupButtonEdit.addEventListener('click', () => {
 buttonOpenPopupAddCard.addEventListener('click', () => {
 	modalAction.openPopup(popupAddCard);
 	deleteInputsValue(popupAddCard);
-	validateAddForm._blockCurrentButton();
-	validateAddForm._hideInputsMsgError();
+	validateAddForm.blockCurrentButton();
+	validateAddForm.hideInputsMsgError();
 });
